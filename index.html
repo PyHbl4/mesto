@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,31 @@
     <title>Mesto - project of Maxim Runkov | Yandex.Practicum</title>
     <link rel="stylesheet" href="./pages/index.css">
 </head>
-<body>
-    
+
+<body class="site-body">
+    <div class="page-wrapper">
+        <header class="header">
+            <img src="./images/logo.svg" alt="логотип" class="header__logo">
+        </header>
+        <main>
+            <section class="profile">
+                <div class="profile__avatar">
+                    <img src="./images/avatar.jpg" alt="аватар">
+                </div>
+                <div class="profile__info">
+                    <h1 class="profile__title">Жак-Ив Кусто</h1>
+                    <p class="profile__subtitle">Исследователь океана</p>
+                    <button class="profile__edit-button"><img src="./images/edit_icon.svg"
+                            alt="кнопка изменения информации">
+                    </button>
+                </div>
+                
+                <button class="profile__add-button">
+                    <img src="./images/add_button.svg" alt="кнопка добавления карточки">
+                </button>
+            </section>
+        </main>
+    </div>
 </body>
+
 </html>
