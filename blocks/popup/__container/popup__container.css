@@ -16,5 +16,6 @@
     .popup__container {
         width: 100%;
         margin: 0 19px;
+        padding: 25px 22px;
     }
 }

@@ -11,3 +11,16 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+@media screen and (max-width: 768px) {
+    .profile__subtitle {
+        padding-right: 0;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .profile__subtitle {
+        padding: 0;
+        margin: 14px 0 0 0;
+    }
+}

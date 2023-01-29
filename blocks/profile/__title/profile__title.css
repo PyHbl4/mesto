@@ -12,9 +12,17 @@
     text-overflow: ellipsis;
 }
 
+@media screen and (max-width: 768px) {
+    .profile__title {
+        text-align: center;
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: 450px) {
     .profile__title {
         font-size: 27px;
         justify-self: center;
+        margin: 0;
     }
 }

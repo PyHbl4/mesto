@@ -5,12 +5,20 @@
     width: fit-content;
     grid-template-rows: auto auto;
     grid-template-areas: "profile__title profile__edit-button"
-    "profile__subtitle profile__subtitle";
+        "profile__subtitle profile__subtitle";
 }
 
 @media screen and (max-width: 768px) {
     .profile__info {
         margin: 0 auto 36px auto;
         text-align: center;
+        grid-template-areas: ". profile__title profile__edit-button"
+            "profile__subtitle profile__subtitle profile__subtitle";
+        grid-template-columns: minmax(0, 25px) 1fr minmax(0, 25px);
+    }
+}
+@media screen and (max-width: 768px) {
+    .profile__info {
+        min-width: 100%;
     }
 }

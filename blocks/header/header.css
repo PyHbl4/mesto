@@ -9,5 +9,6 @@
 @media screen and (max-width: 768px) {
     .header {
         padding: 28px 19px 32px 19px;
+        margin-bottom: 42px;
     }
 }

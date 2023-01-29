@@ -4,8 +4,8 @@ window.addEventListener('DOMContentLoaded', () => {
     let profileName = document.querySelector('.profile__title');
     let profileProfession = document.querySelector('.profile__subtitle');
     let popup = document.querySelector('.popup');
-    let inputName = document.querySelector('.edit-form__input_name');
-    let inputProfession = document.querySelector('.edit-form__input_profession');
+    let inputName = document.querySelector('.edit-form__input_type_name');
+    let inputProfession = document.querySelector('.edit-form__input_type_profession');
     let formBody = document.querySelector('.edit-form')
     function openPopup() {
         popup.classList.add('popup_opened');
@@ -30,6 +30,8 @@ window.addEventListener('DOMContentLoaded', () => {
         evt.preventDefault();
         profileName.textContent = `${inputName.value}`;
         profileProfession.textContent = `${inputProfession.value}`;
+        inputName.value = '';
+        inputProfession.value = '';
         closePopup();
     }
     formBody.addEventListener('submit', handleFormSubmit); 

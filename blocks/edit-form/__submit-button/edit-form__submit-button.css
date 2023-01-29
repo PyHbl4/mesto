@@ -17,3 +17,8 @@
 .edit-form__submit-button:hover {
     opacity: .8;
 }
+@media screen and (max-width: 450px) {
+    .edit-form__submit-button {
+        font-size: 14px;
+    }
+}
