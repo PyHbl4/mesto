@@ -7,5 +7,18 @@
     height: 50px;
     align-items: center;
     justify-content: center;
+    transition: opacity .4s;
     cursor: pointer;
+}
+
+.profile__add-button:hover {
+    opacity: .5;
+}
+
+@media screen and (max-width: 768px) {
+    .profile__add-button {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
 }

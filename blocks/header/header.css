@@ -1,7 +1,13 @@
 .header {
     display: flex;
     justify-content: start;
-    padding: 45px 0 41px 0;
+    padding: 45px 19px 41px 19px;
     border-bottom: 1px solid rgba(84, 84, 84, .7);
     margin-bottom: 40px;
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        padding: 28px 19px 32px 19px;
+    }
 }

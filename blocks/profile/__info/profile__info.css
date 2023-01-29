@@ -1,7 +1,16 @@
 .profile__info {
     display: grid;
-    grid-template-columns: max-content auto;
+    grid-template-columns: 1fr auto;
+    min-width: 336px;
+    width: fit-content;
     grid-template-rows: auto auto;
     grid-template-areas: "profile__title profile__edit-button"
     "profile__subtitle profile__subtitle";
+}
+
+@media screen and (max-width: 768px) {
+    .profile__info {
+        margin: 0 auto 36px auto;
+        text-align: center;
+    }
 }

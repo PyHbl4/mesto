@@ -26,13 +26,62 @@
                             alt="кнопка изменения информации">
                     </button>
                 </div>
-                
+
                 <button class="profile__add-button">
                     <img src="./images/add_button.svg" alt="кнопка добавления карточки">
                 </button>
             </section>
+            <section class="elements">
+                <div class="element">
+                    <img src="./images/element_01.png" alt="Карачаевск" class="element__image">
+                    <h3 class="element__title">Карачаевск</h3>
+                    <img src="./images/like.svg" alt="лайк" class="element__like">
+                </div>
+                <div class="element">
+                    <img src="./images/element_02.png" alt="Гора Эльбрус" class="element__image">
+                    <h3 class="element__title">Гора Эльбрус</h3>
+                    <img src="./images/like.svg" alt="лайк" class="element__like">
+                </div>
+                <div class="element">
+                    <img src="./images/element_03.png" alt="Домбай" class="element__image">
+                    <h3 class="element__title">Домбай</h3>
+                    <img src="./images/like.svg" alt="лайк" class="element__like">
+                </div>
+                <div class="element">
+                    <img src="./images/element_04.png" alt="Гора Эльбрус" class="element__image">
+                    <h3 class="element__title">Гора Эльбрус</h3>
+                    <img src="./images/like.svg" alt="лайк" class="element__like">
+                </div>
+                <div class="element">
+                    <img src="./images/element_05.png" alt="Домбай" class="element__image">
+                    <h3 class="element__title">Домбай</h3>
+                    <img src="./images/like.svg" alt="лайк" class="element__like">
+                </div>
+                <div class="element">
+                    <img src="./images/element_06.png" alt="Карачаево-Черкессия" class="element__image">
+                    <h3 class="element__title">Карачаево-Черкессия</h3>
+                    <img src="./images/like.svg" alt="лайк" class="element__like">
+                </div>
+            </section>
         </main>
+        <footer class="footer">
+            <p class="footer__copyright">
+                © 2020 Mesto Russia
+            </p>
+        </footer>
     </div>
+    <div class="popup">
+        <div class="popup__container">
+            <img src="./images/close_icon.svg" alt="закрыть" class="popup__close-icon">
+            <form action="post" class="edit-form">
+                <p class="edit-form__title">Редактировать профиль</p>
+                <input type="text" class="edit-form__input edit-form__input_name" name="name">
+                <input type="text" class="edit-form__input edit-form__input_profession" name="profession">
+                <button type="submit" class="edit-form__submit-button">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <script src="./index.js"></script>
 </body>
 
 </html>

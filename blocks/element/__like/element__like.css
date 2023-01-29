@@ -1,0 +1,11 @@
+.element__like {
+    grid-area: element__like;
+    padding-right: 20px;
+    align-self: center;
+    cursor: pointer;
+    transition: opacity .4s;
+}
+
+.element__like:hover {
+    opacity: .5;
+}

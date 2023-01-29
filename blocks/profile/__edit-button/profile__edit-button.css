@@ -10,5 +10,12 @@
     aspect-ratio: 1 / 1;
     cursor: pointer;
     grid-area: profile__edit-button;
+    transition: opacity .4s;
     align-self: end;
+    margin-right: 30px;
+    margin-bottom: 8px;
+}
+
+.profile__edit-button:hover {
+    opacity: .5;
 }
