@@ -9,27 +9,25 @@ window.addEventListener('DOMContentLoaded', () => {
     let formBody = document.querySelector('.edit-form')
     function openPopup() {
         popup.classList.add('popup_opened');
-        document.body.style.overflow = 'hidden';
         inputName.value = `${profileName.textContent}`;
         inputProfession.value = `${profileProfession.textContent}`;
     }
     function closePopup() {
         popup.classList.remove('popup_opened');
-        document.body.style.overflow = 'auto';
         inputName.value = '';
         inputProfession.value = '';
     }
     editButton.addEventListener('click', openPopup);
     closeButton.addEventListener('click', closePopup);
-    window.addEventListener('keyup', function(key) {
-        if (key.code === 'Escape') {
-            closePopup();
-        }
-    })
+    // window.addEventListener('keyup', function(key) {
+    //     if (key.code === 'Escape') {
+    //         closePopup();
+    //     }
+    // })
     function handleFormSubmit (evt) {
         evt.preventDefault();
-        profileName.textContent = `${inputName.value}`;
-        profileProfession.textContent = `${inputProfession.value}`;
+        profileName.textContent = inputName.value;
+        profileProfession.textContent = inputProfession.value;
         inputName.value = '';
         inputProfession.value = '';
         closePopup();
