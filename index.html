@@ -22,12 +22,12 @@
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
                     <p class="profile__subtitle">Исследователь океана</p>
-                    <button class="profile__edit-button"><img src="./images/edit_icon.svg"
+                    <button type="button" class="profile__edit-button"><img src="./images/edit_icon.svg"
                             alt="кнопка изменения информации">
                     </button>
                 </div>
 
-                <button class="profile__add-button">
+                <button class="profile__add-button" type="button">
                     <img src="./images/add_button.svg" alt="кнопка добавления карточки">
                 </button>
             </section>
@@ -72,7 +72,7 @@
     </div>
     <div class="popup">
         <div class="popup__container">
-            <img src="./images/close_icon.svg" alt="закрыть" class="popup__close-icon">
+            <button class="popup__close-button" type="button"><img src="./images/close_icon.svg" alt="закрыть" class="popup__close-icon"></button>
             <form action="post" class="edit-form" name="edit-form">
                 <p class="edit-form__title">Редактировать профиль</p>
                 <input type="text" class="edit-form__input edit-form__input_type_name" name="name">

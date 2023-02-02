@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
-    let closeButton = document.querySelector('.popup__close-icon');
+    let closeButton = document.querySelector('.popup__close-button');
     let editButton = document.querySelector('.profile__edit-button');
     let profileName = document.querySelector('.profile__title');
     let profileProfession = document.querySelector('.profile__subtitle');
