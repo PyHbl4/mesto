@@ -22,5 +22,7 @@
     .profile__subtitle {
         padding: 0;
         margin: 14px 0 0 0;
+        line-height: 1;
+        font-size: 14px;
     }
 }

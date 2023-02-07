@@ -36,8 +36,4 @@
         top: 8px;
         left: calc(100% + 10px);
     }
-
-    .profile__edit-button * {
-        width: 8px;
-    }
 }

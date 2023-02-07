@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesto - project of Maxim Runkov | Yandex.Practicum</title>
+    <title>Mesto - проект Максима Рункова | Yandex.Practicum</title>
     <link rel="stylesheet" href="./pages/index.css">
 </head>
 
@@ -22,45 +22,46 @@
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
                     <p class="profile__subtitle">Исследователь океана</p>
-                    <button type="button" class="profile__edit-button"><img src="./images/edit_icon.svg"
-                            alt="кнопка изменения информации">
+                    <button type="button" class="profile__edit-button"><img class="profile__edit-button-icon"
+                            src="./images/edit_icon.svg" alt="кнопка изменения информации">
                     </button>
                 </div>
 
                 <button class="profile__add-button" type="button">
-                    <img src="./images/add_button.svg" alt="кнопка добавления карточки">
+                    <img class="profile__add-button-icon" src="./images/add_button.svg"
+                        alt="кнопка добавления карточки">
                 </button>
             </section>
             <section class="elements">
                 <div class="element">
                     <img src="./images/element_01.png" alt="Карачаевск" class="element__image">
                     <h2 class="element__title">Карачаевск</h2>
-                    <img src="./images/like.svg" alt="лайк" class="element__like">
+                    <button class="element__like"></button>
                 </div>
                 <div class="element">
                     <img src="./images/element_02.png" alt="Гора Эльбрус" class="element__image">
                     <h2 class="element__title">Гора Эльбрус</h2>
-                    <img src="./images/like.svg" alt="лайк" class="element__like">
+                    <button class="element__like"></button>
                 </div>
                 <div class="element">
                     <img src="./images/element_03.png" alt="Домбай" class="element__image">
                     <h2 class="element__title">Домбай</h2>
-                    <img src="./images/like.svg" alt="лайк" class="element__like">
+                    <button class="element__like"></button>
                 </div>
                 <div class="element">
                     <img src="./images/element_04.png" alt="Гора Эльбрус" class="element__image">
                     <h2 class="element__title">Гора Эльбрус</h2>
-                    <img src="./images/like.svg" alt="лайк" class="element__like">
+                    <button class="element__like"></button>
                 </div>
                 <div class="element">
                     <img src="./images/element_05.png" alt="Домбай" class="element__image">
                     <h2 class="element__title">Домбай</h2>
-                    <img src="./images/like.svg" alt="лайк" class="element__like">
+                    <button class="element__like"></button>
                 </div>
                 <div class="element">
                     <img src="./images/element_06.png" alt="Карачаево-Черкессия" class="element__image">
                     <h2 class="element__title">Карачаево-Черкессия</h2>
-                    <img src="./images/like.svg" alt="лайк" class="element__like">
+                    <button class="element__like"></button>
                 </div>
             </section>
         </main>
@@ -72,16 +73,17 @@
     </div>
     <div class="popup">
         <div class="popup__container">
-            <button class="popup__close-button" type="button"><img src="./images/close_icon.svg" alt="закрыть" class="popup__close-icon"></button>
+            <button class="popup__close-button" type="button"><img src="./images/close_icon.svg" alt="закрыть"
+                    class="popup__close-icon"></button>
+            <h2 class="edit-form__title">Редактировать профиль</h2>
             <form action="post" class="edit-form" name="edit-form">
-                <p class="edit-form__title">Редактировать профиль</p>
                 <input type="text" class="edit-form__input edit-form__input_type_name" name="name">
                 <input type="text" class="edit-form__input edit-form__input_type_profession" name="profession">
                 <button type="submit" class="edit-form__submit-button">Сохранить</button>
             </form>
         </div>
     </div>
-    <script src="./index.js"></script>
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>

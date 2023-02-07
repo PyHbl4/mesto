@@ -1,10 +1,14 @@
 .element__like {
     grid-area: element__like;
-    padding-right: 20px;
+    margin-right: 20px;
     align-self: center;
     cursor: pointer;
     transition: opacity .4s;
     width: 22px;
+    height: 19px;
+    background-image: url(../../../images/like.svg);
+    border: none;
+    background-color: transparent;
 }
 
 .element__like:hover {

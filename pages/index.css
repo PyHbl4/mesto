@@ -1,13 +1,15 @@
 @import url('../vendor/normalize.css');
-@import url('../fonts/fonts.css');
+@import url('../vendor/fonts/fonts.css');
 @import url('../blocks/site-body/site-body.css');
 @import url('../blocks/page-wrapper/page-wrapper.css');
 @import url('../blocks/header/header.css');
 @import url('../blocks/header/__logo/header__logo.css');
 @import url('../blocks/profile/profile.css');
 @import url('../blocks/profile/__add-button/profile__add-button.css');
+@import url('../blocks/profile/__add-button-icon/profile__add-button-icon.css');
 @import url('../blocks/profile/__avatar/profile__avatar.css');
 @import url('../blocks/profile/__edit-button/profile__edit-button.css');
+@import url('../blocks/profile/__edit-button-icon/profile__edit-button-icon.css');
 @import url('../blocks/profile/__info/profile__info.css');
 @import url('../blocks/profile/__subtitle/profile__subtitle.css');
 @import url('../blocks/profile/__title/profile__title.css');
