@@ -5,14 +5,14 @@
     padding-right: 30px;
     margin: 16px 0 0 0;
     grid-area: profile__subtitle;
-    max-width: 100%;
+    max-width: 540px;
     min-width: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 880px) {
     .profile__subtitle {
         padding-right: 0;
     }

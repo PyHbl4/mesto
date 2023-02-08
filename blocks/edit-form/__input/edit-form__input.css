@@ -2,9 +2,9 @@
     outline: none;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
-    padding: 0 0 13px 0;
+    padding: 0 0 9px 0;
     font-size: 14px;
-    line-height: 1;
+    line-height: 1.21;
     box-sizing: border-box;
     margin-bottom: 30px;
 }
@@ -14,7 +14,7 @@
 }
 
 @media screen and (max-width: 650px) {
-    .edit-form__input:last-child {
+    input.edit-form__input:last-of-type {
         margin-bottom: 45px;
     }
 }

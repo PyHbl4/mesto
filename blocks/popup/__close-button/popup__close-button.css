@@ -15,5 +15,6 @@
         left: auto;
         right: 0;
         width: 20px;
+        bottom: calc(100% + 17px);
     }
 }

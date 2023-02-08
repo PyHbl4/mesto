@@ -2,8 +2,9 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px 17px;
-    padding: 50px 0px 67px 0px;
+    padding: 50px 19px 67px 19px;
 }
+
 
 @media screen and (max-width: 768px) {
     .elements {

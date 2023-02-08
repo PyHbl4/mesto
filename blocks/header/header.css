@@ -3,10 +3,11 @@
     justify-content: start;
     padding: 45px 0px 41px 0px;
     border-bottom: 1px solid rgba(84, 84, 84, .7);
-    margin-bottom: 40px;
+    margin: 0 auto 40px auto;
+    max-width: 880px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 920px) {
     .header {
         padding: 28px 19px 32px 27px;
         margin-bottom: 42px;

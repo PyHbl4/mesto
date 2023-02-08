@@ -8,14 +8,14 @@
     align-items: center;
     justify-content: center;
     transition: opacity .4s;
-    cursor: pointer;
+    cursor: pointer;justify-self: end;
 }
 
 .profile__add-button:hover {
     opacity: .5;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 880px) {
     .profile__add-button {
         width: 100%;
         max-width: 400px;
