@@ -8,7 +8,8 @@
     align-items: center;
     justify-content: center;
     transition: opacity .4s;
-    cursor: pointer;justify-self: end;
+    cursor: pointer;
+    justify-self: end;
 }
 
 .profile__add-button:hover {
