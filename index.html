@@ -10,6 +10,14 @@
 </head>
 
 <body class="site-body">
+    <template id="place-card">
+        <div class="element">
+            <button class="element__delete-button" type="button"><img src="./images/trash.svg" alt="удалить"></button>
+            <img src="" alt="" class="element__image">
+            <h2 class="element__title"></h2>
+            <button type="button" class="element__like"></button>
+        </div>
+    </template>
     <div class="page-wrapper">
         <header class="header">
             <img src="./images/logo.svg" alt="логотип" class="header__logo">
@@ -32,38 +40,7 @@
                         alt="кнопка добавления карточки">
                 </button>
             </section>
-            <section class="elements">
-                <div class="element">
-                    <img src="./images/element_01.png" alt="Карачаевск" class="element__image">
-                    <h2 class="element__title">Карачаевск</h2>
-                    <button type="button" class="element__like"></button>
-                </div>
-                <div class="element">
-                    <img src="./images/element_02.png" alt="Гора Эльбрус" class="element__image">
-                    <h2 class="element__title">Гора Эльбрус</h2>
-                    <button type="button" class="element__like"></button>
-                </div>
-                <div class="element">
-                    <img src="./images/element_03.png" alt="Домбай" class="element__image">
-                    <h2 class="element__title">Домбай</h2>
-                    <button type="button" class="element__like"></button>
-                </div>
-                <div class="element">
-                    <img src="./images/element_04.png" alt="Гора Эльбрус" class="element__image">
-                    <h2 class="element__title">Гора Эльбрус</h2>
-                    <button type="button" class="element__like"></button>
-                </div>
-                <div class="element">
-                    <img src="./images/element_05.png" alt="Домбай" class="element__image">
-                    <h2 class="element__title">Домбай</h2>
-                    <button type="button" class="element__like"></button>
-                </div>
-                <div class="element">
-                    <img src="./images/element_06.png" alt="Карачаево-Черкессия" class="element__image">
-                    <h2 class="element__title">Карачаево-Черкессия</h2>
-                    <button type="button" class="element__like"></button>
-                </div>
-            </section>
+            <section class="elements" id="elements-container"></section>
         </main>
         <footer class="footer">
             <p class="footer__copyright">
@@ -81,6 +58,19 @@
                 <input type="text" class="edit-form__input edit-form__input_type_profession" name="profession">
                 <button type="submit" class="edit-form__submit-button">Сохранить</button>
             </form>
+            <form action="post" class="add-form" name="add-form">
+                <input type="text" class="add-form__input add-form__input_type_name" name="name" placeholder="Название">
+                <input type="text" class="add-form__input add-form__input_type_image" name="image-link" placeholder="Ссылка на картинку">
+                <button type="submit" class="add-form__submit-button">Создать</button>
+            </form>
+        </div>
+    </div>
+    <div class="image-popup">
+        <div class="image-popup__wrapper">
+            <button class="image-popup__close-icon">
+            </button>
+            <img src="./images/element_04.png" alt="" class="image-popup__image">
+            <p class="image-popup__description">Карачаево-Черкессия</p>
         </div>
     </div>
     <script src="./scripts/index.js"></script>

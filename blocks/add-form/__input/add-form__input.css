@@ -1,0 +1,20 @@
+.add-form__input {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    padding: 0 0 9px 0;
+    font-size: 14px;
+    line-height: 1.21;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+}
+
+.add-form__input:last-child {
+    margin-bottom: 48px;
+}
+
+@media screen and (max-width: 650px) {
+    input.add-form__input:last-of-type {
+        margin-bottom: 45px;
+    }
+}
