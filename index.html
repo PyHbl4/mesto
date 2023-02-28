@@ -48,7 +48,7 @@
             </p>
         </footer>
     </div>
-    <div class="popup">
+    <div class="popup popup_edit">
         <div class="popup__container">
             <button class="popup__close-button" type="button"><img src="./images/close_icon.svg" alt="закрыть"
                     class="popup__close-icon"></button>
@@ -58,6 +58,13 @@
                 <input type="text" class="edit-form__input edit-form__input_type_profession" name="profession">
                 <button type="submit" class="edit-form__submit-button">Сохранить</button>
             </form>
+        </div>
+    </div>
+    <div class="popup popup_add">
+        <div class="popup__container">
+            <button class="popup__close-button" type="button"><img src="./images/close_icon.svg" alt="закрыть"
+                    class="popup__close-icon"></button>
+            <h2 class="popup__title">Новое место</h2>
             <form action="post" class="add-form" name="add-form">
                 <input type="text" class="add-form__input add-form__input_type_name" name="name" placeholder="Название">
                 <input type="text" class="add-form__input add-form__input_type_image" name="image-link" placeholder="Ссылка на картинку">

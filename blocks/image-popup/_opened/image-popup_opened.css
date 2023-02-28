@@ -1,4 +1,5 @@
 .image-popup_opened {
     z-index: 3;
+    visibility: visible;
     opacity: 1;
 }
