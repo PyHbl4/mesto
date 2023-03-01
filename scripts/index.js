@@ -1,9 +1,9 @@
 window.addEventListener('DOMContentLoaded', () => {
     const cardTemplateElement = document.getElementById('place-card').content.querySelector('.element');
     const cardsContainer = document.getElementById('elements-container');
-    const closeButtons = document.querySelectorAll('.popup__close-button');
-    const editButton = document.querySelector('.profile__edit-button');
-    const addButton = document.querySelector('.profile__add-button');
+    const buttonsClose = document.querySelectorAll('.popup__close-button');
+    const buttonEdit = document.querySelector('.profile__edit-button');
+    const buttonAdd = document.querySelector('.profile__add-button');
     const profileName = document.querySelector('.profile__title');
     const profileProfession = document.querySelector('.profile__subtitle');
     const popupEdit = document.querySelector('.popup_edit');
@@ -17,15 +17,14 @@ window.addEventListener('DOMContentLoaded', () => {
     const imagePopupBody = document.querySelector('.image-popup');
     const imagePopupImg = imagePopupBody.querySelector('.image-popup__image');
     const imagePopupDesc = imagePopupBody.querySelector('.image-popup__description');
-    const closeImagePopupBtn = document.querySelector('.image-popup__close-icon');
     const initialCards = [
         {
             name: 'Архыз',
             link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
         },
         {
-            name: 'Челябинская область',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+            name: 'Екатеринбург',
+            link: 'http://s1.fotokto.ru/photo/full/181/1815420.jpg'
         },
         {
             name: 'Иваново',
@@ -36,8 +35,8 @@ window.addEventListener('DOMContentLoaded', () => {
             link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
         },
         {
-            name: 'Холмогорский район',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+            name: 'Каракол',
+            link: 'http://s1.fotokto.ru/photo/full/276/2760112.jpg'
         },
         {
             name: 'Байкал',
@@ -61,24 +60,26 @@ window.addEventListener('DOMContentLoaded', () => {
             imagePopupImg.src = cardImg.src;
             imagePopupImg.alt = cardImg.alt;
             imagePopupDesc.textContent = cardTitle.textContent;
-            imagePopupBody.classList.add('image-popup_opened');
+            openPopup('image');
         })
         cardDelBtn.addEventListener('click', () => {
             cardElement.remove();
         })
         return cardElement;
     }
-    
-    function openEditPopup() {
-        popupEdit.classList.add('popup_opened');
-        inputName.value = profileName.textContent;
-        inputProfession.value = profileProfession.textContent;
+    function openPopup(type) {
+        if (type === 'edit') {
+            popupEdit.classList.add('popup_opened');
+            inputName.value = profileName.textContent;
+            inputProfession.value = profileProfession.textContent;
+        } else if (type === 'add') {
+            popupAdd.classList.add('popup_opened');
+        } else if (type === 'image') {
+            imagePopupBody.classList.add('popup_opened');
+        }
     }
-    function openAddPopup() {
-        popupAdd.classList.add('popup_opened');
-    }
-
     function closePopup() {
+        imagePopupBody.classList.remove('popup_opened');
         popupAdd.classList.remove('popup_opened');
         popupEdit.classList.remove('popup_opened');
         inputName.value = '';
@@ -103,28 +104,16 @@ window.addEventListener('DOMContentLoaded', () => {
         cardsContainer.prepend(createCard(newObject));
         closePopup();
     }
-    function closeImagePopup() {
-        imagePopupBody.classList.remove('image-popup_opened');
-    }
-
     for (let i = 0; i < initialCards.length; i++) {
         const element = initialCards[i];
         cardsContainer.append(createCard(element));
     }
-
-
-    editButton.addEventListener('click', openEditPopup);
-    addButton.addEventListener('click', openAddPopup);
-    for (let i = 0; i < closeButtons.length; i++) {
-        const element = closeButtons[i];
+    buttonEdit.addEventListener('click', () => { openPopup('edit') });
+    buttonAdd.addEventListener('click', () => { openPopup('add') });
+    for (let i = 0; i < buttonsClose.length; i++) {
+        const element = buttonsClose[i];
         element.addEventListener('click', closePopup);
     }
-    closeImagePopupBtn.addEventListener('click', closeImagePopup);
-    // window.addEventListener('keyup', function(key) {
-    //     if (key.code === 'Escape') {
-    //         closePopup();
-    //     }
-    // })
     formBodyEdit.addEventListener('submit', handleFormSubmit);
     formBodyAdd.addEventListener('submit', addFormSubmit);
 });

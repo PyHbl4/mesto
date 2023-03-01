@@ -12,6 +12,6 @@
 
 @media screen and (max-width: 500px) {
     .image-popup__wrapper {
-        max-width: calc(100% - 80px);
+        max-width: calc(100% - 40px);
     }
 }
