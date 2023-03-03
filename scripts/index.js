@@ -21,30 +21,30 @@ window.addEventListener('DOMContentLoaded', () => {
     const imagePopupDesc = imagePopupBody.querySelector('.image-popup__description');
     const initialCards = [
         {
-            name: 'Архыз',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+          name: 'Архыз',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
         },
         {
-            name: 'Екатеринбург',
-            link: 'http://s1.fotokto.ru/photo/full/181/1815420.jpg'
+          name: 'Челябинская область',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
         },
         {
-            name: 'Иваново',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+          name: 'Иваново',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
         },
         {
-            name: 'Камчатка',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+          name: 'Камчатка',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
         },
         {
-            name: 'Каракол',
-            link: 'http://s1.fotokto.ru/photo/full/276/2760112.jpg'
+          name: 'Холмогорский район',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
         },
         {
-            name: 'Байкал',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+          name: 'Байкал',
+          link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
         }
-    ];
+      ]; 
 
     function createCard(cardObject) {
         const cardElement = cardTemplateElement.cloneNode(true);
