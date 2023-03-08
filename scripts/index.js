@@ -109,4 +109,14 @@ window.addEventListener('DOMContentLoaded', () => {
     buttonCloseImagePopup.addEventListener('click', () => {closePopup(imagePopupBody)})
     formBodyEdit.addEventListener('submit', handleFormSubmit);
     formBodyAdd.addEventListener('submit', addFormSubmit);
+    window.addEventListener('keydown', function(evt){
+      if (evt.key === 'Escape') {
+        if (popupEdit.classList.contains('popup_opened')) {
+          closePopup(popupEdit);
+        }
+        if (popupAdd.classList.contains('popup_opened')) {
+          closePopup(popupAdd);
+        }
+      }
+    })
 });

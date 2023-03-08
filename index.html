@@ -53,9 +53,9 @@
             <button class="popup__close-button" type="button"><img src="./images/close_icon.svg" alt="закрыть"
                     class="popup__close-icon"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form action="post" class="edit-form" name="edit-form">
-                <input type="text" class="edit-form__input edit-form__input_type_name" name="name">
-                <input type="text" class="edit-form__input edit-form__input_type_profession" name="profession">
+            <form action="post" class="edit-form" name="edit-form" novalidate>
+                <input type="text" class="edit-form__input edit-form__input_type_name" name="name" required minlength="2" maxlength="40">
+                <input type="text" class="edit-form__input edit-form__input_type_profession" name="profession" required minlength="2" maxlength="200">
                 <button type="submit" class="edit-form__submit-button">Сохранить</button>
             </form>
         </div>
@@ -65,9 +65,9 @@
             <button class="popup__close-button" type="button"><img src="./images/close_icon.svg" alt="закрыть"
                     class="popup__close-icon"></button>
             <h2 class="popup__title">Новое место</h2>
-            <form action="post" class="add-form" name="add-form">
-                <input type="text" class="add-form__input add-form__input_type_name" name="name" placeholder="Название">
-                <input type="text" class="add-form__input add-form__input_type_image" name="image-link" placeholder="Ссылка на картинку">
+            <form action="post" class="add-form" name="add-form" novalidate>
+                <input type="text" class="add-form__input add-form__input_type_name" name="name" placeholder="Название" required minlength="2" maxlength="30">
+                <input type="url" class="add-form__input add-form__input_type_image" name="image-link" placeholder="Ссылка на картинку" required>
                 <button type="submit" class="add-form__submit-button">Создать</button>
             </form>
         </div>
@@ -81,6 +81,7 @@
         </div>
     </div>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 
 </html>
