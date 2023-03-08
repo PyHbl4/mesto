@@ -111,11 +111,9 @@ window.addEventListener('DOMContentLoaded', () => {
     formBodyAdd.addEventListener('submit', addFormSubmit);
     window.addEventListener('keydown', function(evt){
       if (evt.key === 'Escape') {
-        if (popupEdit.classList.contains('popup_opened')) {
-          closePopup(popupEdit);
-        }
-        if (popupAdd.classList.contains('popup_opened')) {
-          closePopup(popupAdd);
+        const openedPopup = document.querySelector('.popup_opened');
+        if (openedPopup) {
+          closePopup(openedPopup);
         }
       }
     })

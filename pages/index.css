@@ -42,3 +42,5 @@
 @import url('../blocks/image-popup/__image/image-popup__image.css');
 @import url('../blocks/image-popup/__wrapper/image-popup__wrapper.css');
 @import url('../blocks/image-popup/_opened/image-popup_opened.css');
+@import url('../blocks/error-message/error-message.css');
+@import url('../blocks/form-label/form-label.css');
