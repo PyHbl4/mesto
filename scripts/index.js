@@ -99,14 +99,23 @@ window.addEventListener('DOMContentLoaded', () => {
   buttonEdit.addEventListener('click', () => {
     inputName.value = profileName.textContent;
     inputProfession.value = profileProfession.textContent;
+    enableValidation(validSettings);
     openPopup(popupEdit);
   });
   buttonAdd.addEventListener('click', () => {
     openPopup(popupAdd);
   });
-  buttonCloseEditPopup.addEventListener('click', () => { closePopup(popupEdit) })
-  buttonCloseAddPopup.addEventListener('click', () => { closePopup(popupAdd) })
-  
+  popupEdit.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-icon')) {
+      closePopup(popupEdit)
+    }
+  })
+  popupAdd.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-icon')) {
+      closePopup(popupAdd)
+    }
+  })
+
   imagePopupBody.addEventListener('click', (evt) => {
     if (evt.target !== imagePopupImg && evt.target !== imagePopupDesc) {
       closePopup(imagePopupBody);

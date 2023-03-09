@@ -43,4 +43,6 @@
 @import url('../blocks/image-popup/__wrapper/image-popup__wrapper.css');
 @import url('../blocks/image-popup/_opened/image-popup_opened.css');
 @import url('../blocks/error-message/error-message.css');
+@import url('../blocks/error-message/_visible/error-message_visible.css');
 @import url('../blocks/form-label/form-label.css');
+@import url('../blocks/form-input/_type/form-input_type_error.css');

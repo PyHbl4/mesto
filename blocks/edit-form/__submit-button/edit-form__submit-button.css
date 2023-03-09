@@ -9,8 +9,20 @@
     border: none;
     height: 50px;
     border-radius: 2px;
-    transition: opacity .4s;
+    transition: all .4s;
     cursor: pointer;
+}
+
+.edit-form__submit-button[disabled="true"] {
+    opacity: 0.2;
+    border: 1px solid #000;
+    color: #000;
+    background-color: #fff;
+    cursor: not-allowed;
+}
+
+.edit-form__submit-button[disabled="true"]:hover {
+    opacity: .2;
 }
 
 .edit-form__submit-button:hover {

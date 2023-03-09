@@ -1,6 +1,9 @@
 .error-message {
     color: red;
-    position: absolute;
-    bottom: 10px;
-    left: 0;
+    display: block;
+    transition: all .5s;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 12px;
+    line-height: 1;
 }
