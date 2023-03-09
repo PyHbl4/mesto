@@ -69,11 +69,36 @@ window.addEventListener('DOMContentLoaded', () => {
     })
     return cardElement;
   }
+  function closeByEsc(evt) {
+    if (evt.key === 'Escape') {
+      const openedPopup = document.querySelector('.popup_opened');
+      if (openedPopup) {
+        closePopup(openedPopup);
+      }
+    }
+  }
   function openPopup(element) {
     element.classList.add('popup_opened');
+    window.addEventListener('keydown', closeByEsc);
+    const form = element.querySelector('.form');
+    if (form) {
+      const inputList = Array.from(element.querySelectorAll('.form-input'));
+      const formBtn = element.querySelector('.form-submit');
+      inputList.forEach((inputElement) => {
+        if (inputElement.value !== '') {
+          checkInputValidity(form, inputElement, validSettings);
+          toggleButtonState(inputList, formBtn);
+        } else {
+          hideInputError(form, inputElement, validSettings);
+        }
+      });
+    }
   }
   function closePopup(element) {
     element.classList.remove('popup_opened');
+    let elementInputs = Array.from(element.querySelectorAll('.form-input'));
+    elementInputs.forEach(el => el.value = '');
+    window.removeEventListener('keydown', closeByEsc);
   }
   function handleFormSubmit(evt) {
     evt.preventDefault();
@@ -99,7 +124,6 @@ window.addEventListener('DOMContentLoaded', () => {
   buttonEdit.addEventListener('click', () => {
     inputName.value = profileName.textContent;
     inputProfession.value = profileProfession.textContent;
-    enableValidation(validSettings);
     openPopup(popupEdit);
   });
   buttonAdd.addEventListener('click', () => {
@@ -123,12 +147,4 @@ window.addEventListener('DOMContentLoaded', () => {
   })
   formBodyEdit.addEventListener('submit', handleFormSubmit);
   formBodyAdd.addEventListener('submit', addFormSubmit);
-  window.addEventListener('keydown', function (evt) {
-    if (evt.key === 'Escape') {
-      const openedPopup = document.querySelector('.popup_opened');
-      if (openedPopup) {
-        closePopup(openedPopup);
-      }
-    }
-  })
 });

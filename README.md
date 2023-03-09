@@ -17,3 +17,19 @@ HTML|CSS|JS(functions, DOM, events)
 
 ~~Немного отошел от ТЗ в той части, где указывалось, как именно нужно скрывать попап-блок со страницы. Сделал плавное появление/скрытие блока через прозрачность + z-index. Также, реализовал закрытие попапа через клавишу Escape на клавиатуре и "заморозил" скроллинг страницы при открытом попапе с формой.~~
 Осознал, убрал, не повторится.
+
+P.S.: в процессе рефакторинга выявил неприятный баг, а именно: если открыть форму, сделать поле (или поля) невалидным(-и) и закрыть поп-ап, при следующем открытии под полями висят ошибки. Особенно это напрягает в форме редактирования данных, где, исходя из ТЗ, форма по-умолчанию имеет валидные поля при открытии (информация подгружается в инпуты). Проблему решил, немного усложнив функцию открытия поп-апов:
+```const form = element.querySelector('.form');
+    if (form) {
+      const inputList = Array.from(element.querySelectorAll('.form-input'));
+      const formBtn = element.querySelector('.form-submit');
+      inputList.forEach((inputElement) => {
+        if (inputElement.value !== '') {
+          checkInputValidity(form, inputElement, validSettings);
+          toggleButtonState(inputList, formBtn);
+        } else {
+          hideInputError(form, inputElement, validSettings);
+        }
+      });
+    }
+```
