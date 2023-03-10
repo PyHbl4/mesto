@@ -80,19 +80,7 @@ window.addEventListener('DOMContentLoaded', () => {
   function openPopup(element) {
     element.classList.add('popup_opened');
     window.addEventListener('keydown', closeByEsc);
-    const form = element.querySelector('.form');
-    if (form) {
-      const inputList = Array.from(element.querySelectorAll('.form-input'));
-      const formBtn = element.querySelector('.form-submit');
-      inputList.forEach((inputElement) => {
-        if (inputElement.value !== '') {
-          checkInputValidity(form, inputElement, validSettings);
-          toggleButtonState(inputList, formBtn);
-        } else {
-          hideInputError(form, inputElement, validSettings);
-        }
-      });
-    }
+
   }
   function closePopup(element) {
     element.classList.remove('popup_opened');
@@ -122,11 +110,13 @@ window.addEventListener('DOMContentLoaded', () => {
     cardsContainer.append(createCard(element));
   }
   buttonEdit.addEventListener('click', () => {
+    validateFormOnOpenPopup(popupEdit);
     inputName.value = profileName.textContent;
     inputProfession.value = profileProfession.textContent;
     openPopup(popupEdit);
   });
   buttonAdd.addEventListener('click', () => {
+    validateFormOnOpenPopup(popupAdd);
     openPopup(popupAdd);
   });
   popupEdit.addEventListener('click', (evt) => {

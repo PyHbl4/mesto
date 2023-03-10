@@ -40,6 +40,20 @@ function toggleButtonState(inputList, buttonElement) {
     }
 }
 
+const validateFormOnOpenPopup = (popup) => {
+    const inputList = Array.from(popup.querySelectorAll('.form-input'));
+    const formBtn = popup.querySelector('.form-submit');
+    const form = popup.querySelector('.form')
+    inputList.forEach((inputElement) => {
+        if (inputElement.value !== '') {
+            checkInputValidity(form, inputElement, validSettings);
+        } else {
+            hideInputError(form, inputElement, validSettings);
+        }
+        toggleButtonState(inputList, formBtn);
+    });
+}
+
 //слушатель инпутов
 const setEventListeners = (formElement, properties) => {
     const inputList = Array.from(formElement.querySelectorAll(`${properties.inputSelector}`));
