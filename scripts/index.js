@@ -84,17 +84,18 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   function closePopup(element) {
     element.classList.remove('popup_opened');
-    let elementInputs = Array.from(element.querySelectorAll('.form-input'));
-    elementInputs.forEach(el => el.value = '');
     window.removeEventListener('keydown', closeByEsc);
+  }
+  function resetFormInputs(element) {
+    const elementInputs = Array.from(element.querySelectorAll('.form-input'));
+    elementInputs.forEach(el => el.value = '');
   }
   function handleFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = inputName.value;
     profileProfession.textContent = inputProfession.value;
     closePopup(popupEdit);
-    inputName.value = '';
-    inputProfession.value = '';
+    resetFormInputs(popupEdit);
   }
   function addFormSubmit(evt) {
     evt.preventDefault();
@@ -104,6 +105,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     cardsContainer.prepend(createCard(newObject));
     closePopup(popupAdd);
+    resetFormInputs(popupAdd);
   }
   for (let i = 0; i < initialCards.length; i++) {
     const element = initialCards[i];
