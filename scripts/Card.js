@@ -1,10 +1,10 @@
 import { imagePopupBody } from './index.js';
 import { openPopup, imagePopupImg, imagePopupDesc } from './index.js';
 export class Card {
-    constructor(settings, templateSelector) {
+    constructor(data, templateSelector) {
         this._templateSelector = templateSelector;
-        this._name = settings.name;
-        this._imgLink = settings.link;
+        this._name = data.name;
+        this._imgLink = data.link;
     }
 
     _getTemplate() {
@@ -27,6 +27,10 @@ export class Card {
         openPopup(imagePopupBody);
     }
 
+    _like(evt) {
+        evt.target.classList.toggle('element__like_active');
+    }
+
     _setEventListeners() {
         this._element.querySelector('.element__delete-button').addEventListener('click', () => {
             this._deleteCard();
@@ -34,6 +38,10 @@ export class Card {
 
         this._element.querySelector('.element__image').addEventListener('click', () => {
             this._openImagePopup();
+        })
+
+        this._element.querySelector('.element__like').addEventListener('click', (evt) => {
+            this._like(evt);
         })
     }
 
