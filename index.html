@@ -55,11 +55,14 @@
             <h2 class="popup__title">Редактировать профиль</h2>
             <form action="post" class="form edit-form" name="edit-form" novalidate>
                 <label class="form-label" for="edit-name">
-                    <input id="edit-name" type="text" class="form-input edit-form__input edit-form__input_type_name" name="name" required minlength="2" maxlength="40">
+                    <input id="edit-name" type="text" class="form-input edit-form__input edit-form__input_type_name"
+                        name="name" required minlength="2" maxlength="40">
                     <span class="error-message edit-name-error">текст ошибки</span>
                 </label>
                 <label class="form-label" for="edit-profession">
-                    <input id="edit-profession" type="text" class="form-input edit-form__input edit-form__input_type_profession" name="profession" required minlength="2" maxlength="200">
+                    <input id="edit-profession" type="text"
+                        class="form-input edit-form__input edit-form__input_type_profession" name="profession" required
+                        minlength="2" maxlength="200">
                     <span class="error-message edit-profession-error">текст ошибки</span>
                 </label>
                 <button type="submit" class="form-submit edit-form__submit-button">Сохранить</button>
@@ -73,11 +76,13 @@
             <h2 class="popup__title">Новое место</h2>
             <form action="post" class="form add-form" name="add-form" novalidate>
                 <label class="form-label" for="add-name">
-                    <input id="add-name" type="text" class="form-input add-form__input add-form__input_type_name" name="name" placeholder="Название" required minlength="2" maxlength="30">
+                    <input id="add-name" type="text" class="form-input add-form__input add-form__input_type_name"
+                        name="name" placeholder="Название" required minlength="2" maxlength="30">
                     <span class="error-message add-name-error">текст ошибки</span>
                 </label>
                 <label class="form-label" for="add-url">
-                    <input id="add-url" type="url" class="form-input add-form__input add-form__input_type_image" name="image-link" placeholder="Ссылка на картинку" required>
+                    <input id="add-url" type="url" class="form-input add-form__input add-form__input_type_image"
+                        name="image-link" placeholder="Ссылка на картинку" required>
                     <span class="error-message add-url-error">текст ошибки</span>
                 </label>
                 <button type="submit" class="form-submit add-form__submit-button">Создать</button>
@@ -85,8 +90,8 @@
         </div>
     </div>
     <div class="popup image-popup">
-        <div class="image-popup__wrapper">
-            <button class="image-popup__close-icon popup__close-button">
+        <div class="popup__image-wrapper">
+            <button class="popup__close-button image-popup__close-icon">
             </button>
             <img src="./images/element_04.png" alt="#" class="image-popup__image">
             <p class="image-popup__description">Карачаево-Черкессия</p>

@@ -98,7 +98,7 @@ function addFormSubmit(evt) {
   resetFormInputs(popupAdd);
 }
 function addCard(cardObject, selector) {
-  let card = new Card(cardObject, selector);
+  const card = new Card(cardObject, selector);
   return card.generateCard();
 }
 window.addEventListener('DOMContentLoaded', () => {
