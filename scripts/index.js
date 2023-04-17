@@ -3,6 +3,7 @@ import { FormValidator } from './FormValidator.js';
 import { Section } from './Section.js';
 import { PopupWithForm } from './PopupWithForm.js';
 import { PopupWithImage } from './PopupWithImage.js';
+import { UserInfo } from './UserInfo.js';
 const validSettings = {
   formSelector: '.form',
   inputSelector: '.form-input',
@@ -66,12 +67,10 @@ function resetFormInputs(element) {
 }
 function editFormSubmit(data) {
   profileName.textContent = data.name;
-  profileProfession.textContent = data.profession;
   resetFormInputs(popupEdit);
 }
 function addFormSubmit(values) {
   const newObject = [values];
-  console.log(newObject);
   const newCard = new Section({
     items: newObject,
     renderer: (data) => {
