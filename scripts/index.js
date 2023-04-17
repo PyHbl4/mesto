@@ -1,5 +1,8 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
+import { Section } from './Section.js';
+import { PopupWithForm } from './PopupWithForm.js';
+import { PopupWithImage } from './PopupWithImage.js';
 const validSettings = {
   formSelector: '.form',
   inputSelector: '.form-input',
@@ -7,7 +10,6 @@ const validSettings = {
   inputErrorClass: 'form-input_type_error',
   errorClass: 'error-message_visible',
 }
-const cardsContainer = document.getElementById('elements-container');
 const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonAdd = document.querySelector('.profile__add-button');
 const profileName = document.querySelector('.profile__title');
@@ -16,15 +18,10 @@ const popupEdit = document.querySelector('.popup_edit');
 const popupAdd = document.querySelector('.popup_add');
 const inputName = document.querySelector('.edit-form__input_type_name');
 const inputProfession = document.querySelector('.edit-form__input_type_profession');
-const inputPlaceName = document.querySelector('.add-form__input_type_name');
-const inputPlaceImgUrl = document.querySelector('.add-form__input_type_image');
 const formBodyEdit = document.querySelector('.edit-form');
 const formBodyAdd = document.querySelector('.add-form');
 const formEditValidClass = new FormValidator(validSettings, formBodyEdit);
 const formAddValidClass = new FormValidator(validSettings, formBodyAdd);
-export const imagePopupBody = document.querySelector('.image-popup');
-export const imagePopupImg = imagePopupBody.querySelector('.image-popup__image');
-export const imagePopupDesc = imagePopupBody.querySelector('.image-popup__description');
 const initialCards = [
   {
     name: 'Архыз',
@@ -52,24 +49,11 @@ const initialCards = [
   }
 ];
 
-
-function closeByEsc(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
-    if (openedPopup) {
-      closePopup(openedPopup);
-      resetFormInputs(openedPopup);
-    }
-  }
-}
 export function openPopup(element) {
   element.classList.add('popup_opened');
   window.addEventListener('keydown', closeByEsc);
 }
-function closePopup(element) {
-  element.classList.remove('popup_opened');
-  window.removeEventListener('keydown', closeByEsc);
-}
+
 function resetFormInputs(element) {
   const elementInputs = Array.from(element.querySelectorAll('.form-input'));
   const errorMessages = Array.from(element.querySelectorAll('.error-message_visible'))
@@ -80,61 +64,74 @@ function resetFormInputs(element) {
     errorMessages.forEach(el => el.textContent = '');
   }
 }
-function editFormSubmit(evt) {
-  evt.preventDefault();
-  profileName.textContent = inputName.value;
-  profileProfession.textContent = inputProfession.value;
-  closePopup(popupEdit);
+function editFormSubmit(data) {
+  profileName.textContent = data.name;
+  profileProfession.textContent = data.profession;
   resetFormInputs(popupEdit);
 }
-function addFormSubmit(evt) {
-  evt.preventDefault();
-  const newObject = {
-    name: `${inputPlaceName.value}`,
-    link: `${inputPlaceImgUrl.value}`
-  }
-  cardsContainer.prepend(addCard(newObject, '#place-card'));
-  closePopup(popupAdd);
+function addFormSubmit(values) {
+  const newObject = [values];
+  console.log(newObject);
+  const newCard = new Section({
+    items: newObject,
+    renderer: (data) => {
+      const card = new Card(data, "#place-card");
+      const cardElement = card.generateCard();
+      return cardElement;
+    }
+  }, '#elements-container');
+  newCard.addItem();
   resetFormInputs(popupAdd);
 }
-function addCard(cardObject, selector) {
-  const card = new Card(cardObject, selector);
-  return card.generateCard();
-}
+
+const cardList = new Section({
+  items: initialCards,
+  renderer: (data) => {
+    const card = new Card(data, "#place-card");
+    const cardElement = card.generateCard();
+    return cardElement;
+  }
+}, '#elements-container');
+
 window.addEventListener('DOMContentLoaded', () => {
   formEditValidClass.enableValidation();
   formAddValidClass.enableValidation();
-  for (let i = 0; i < initialCards.length; i++) {
-    const element = initialCards[i];
-    cardsContainer.append(addCard(element, '#place-card'));
-  }
+
+  cardList.renderItems();
+
+  const imagePopup = new PopupWithImage('.image-popup');
+  imagePopup.setEventListeners();
+
+  const formAdd = new PopupWithForm('.popup_add', addFormSubmit);
+  const formEdit = new PopupWithForm('.popup_edit', editFormSubmit);
+  formAdd.setEventListeners();
+  formEdit.setEventListeners();
+
   buttonEdit.addEventListener('click', () => {
     inputName.value = profileName.textContent;
     inputProfession.value = profileProfession.textContent;
-    openPopup(popupEdit);
+    formEdit.open();
     formEditValidClass.openingValidation();
   });
   buttonAdd.addEventListener('click', () => {
-    openPopup(popupAdd);
+    formAdd.open();
     formAddValidClass.openingValidation();
   });
+  //СТАРОЕ ОТКРЫТИЕ ПОП-АПОВ С ФОРМАМИ
+
   popupEdit.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-icon')) {
-      closePopup(popupEdit)
+      formEdit.close();
       resetFormInputs(popupEdit);
     }
   })
   popupAdd.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-icon')) {
-      closePopup(popupAdd);
+      formAdd.close();
       resetFormInputs(popupAdd);
     }
   })
-  imagePopupBody.addEventListener('click', (evt) => {
-    if (evt.target !== imagePopupImg && evt.target !== imagePopupDesc) {
-      closePopup(imagePopupBody);
-    }
-  })
-  formBodyEdit.addEventListener('submit', editFormSubmit);
-  formBodyAdd.addEventListener('submit', addFormSubmit);
+
+  // formBodyEdit.addEventListener('submit', editFormSubmit);
+  // formBodyAdd.addEventListener('submit', addFormSubmit);
 });

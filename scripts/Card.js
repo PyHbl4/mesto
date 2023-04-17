@@ -1,10 +1,10 @@
-import { imagePopupBody } from './index.js';
-import { openPopup, imagePopupImg, imagePopupDesc } from './index.js';
+import { PopupWithImage } from './PopupWithImage.js';
 export class Card {
-    constructor(data, templateSelector) {
+    constructor(data, templateSelector, handleCardClick) {
         this._templateSelector = templateSelector;
         this._name = data.name;
         this._imgLink = data.link;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -21,10 +21,10 @@ export class Card {
     }
 
     _openImagePopup() {
-        imagePopupImg.src = this._imgLink;
-        imagePopupImg.alt = `фото: ${this._name}`;
-        imagePopupDesc.textContent = this._name;
-        openPopup(imagePopupBody);
+        let popup = new PopupWithImage('.image-popup');
+        let src = this._element.querySelector('.element__image').src;
+        let alt = this._element.querySelector('.element__image').alt;
+        popup.open({ src, alt });
     }
 
     _like(evt) {
