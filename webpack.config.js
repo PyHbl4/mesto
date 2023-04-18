@@ -21,26 +21,31 @@ module.exports = {
   },
   module: {
     rules: [{
-        test: /\.js$/,
-        use: 'babel-loader',
-        exclude: '/node_modules/'
+      test: /\.js$/,
+      use: 'babel-loader',
+      exclude: '/node_modules/'
+    },
+    {
+      test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
+      type: 'asset/resource',
+    },
+    {
+      test: /\.css$/,
+      use: [MiniCssExtractPlugin.loader, {
+        loader: 'css-loader',
+        options: {
+          importLoaders: 1
+        }
       },
-      {
-        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
-        type: 'asset/resource',
-      },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1
-            }
-          },
-          'postcss-loader'
-        ]
-      },
+        'postcss-loader'
+      ]
+    },
     ]
+  },
+  resolve: {
+    alias: {
+      'lodash': path.resolve(__dirname, 'node_modules/lodash')
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({

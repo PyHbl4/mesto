@@ -11,32 +11,31 @@
 <body class="site-body">
     <template id="place-card">
         <div class="element">
-            <button class="element__delete-button" type="button"><img src="./images/trash.svg" alt="удалить"></button>
-            <img src="./images/element_04.png" alt="" class="element__image">
+            <button class="element__delete-button" type="button"><img src="<%=require('../images/trash.svg')%>" alt="удалить"></button>
+            <img src="<%=require('../images/element_04.png')%>" alt="" class="element__image">
             <h2 class="element__title"></h2>
             <button type="button" class="element__like"></button>
         </div>
     </template>
     <div class="page-wrapper">
         <header class="header">
-            <img src="./images/logo.svg" alt="логотип" class="header__logo">
+            <img src="<%=require('../images/logo.svg')%>" alt="логотип" class="header__logo">
         </header>
         <main>
             <section class="profile">
                 <div class="profile__avatar">
-                    <img src="./images/avatar.jpg" alt="аватар">
+                    <img src="<%=require('../images/avatar.jpg')%>" alt="аватар">
                 </div>
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
                     <p class="profile__subtitle">Исследователь океана</p>
                     <button type="button" class="profile__edit-button"><img class="profile__edit-button-icon"
-                            src="./images/edit_icon.svg" alt="кнопка изменения информации">
+                            src="<%=require('../images/edit_icon.svg')%>" alt="кнопка изменения информации">
                     </button>
                 </div>
 
                 <button class="profile__add-button" type="button">
-                    <img class="profile__add-button-icon" src="./images/add_button.svg"
-                        alt="кнопка добавления карточки">
+                    <img class="profile__add-button-icon" src="<%=require('../images/add_button.svg')%>" alt="кнопка добавления карточки">
                 </button>
             </section>
             <section class="elements" id="elements-container"></section>
@@ -49,7 +48,7 @@
     </div>
     <div class="popup popup_edit">
         <div class="popup__container">
-            <button class="popup__close-button" type="button"><img src="./images/close_icon.svg" alt="закрыть"
+            <button class="popup__close-button" type="button"><img src="<%=require('../images/close_icon.svg')%>" alt="закрыть"
                     class="popup__close-icon"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
             <form action="post" class="form edit-form" name="edit-form" novalidate>
@@ -70,7 +69,7 @@
     </div>
     <div class="popup popup_add">
         <div class="popup__container">
-            <button class="popup__close-button" type="button"><img src="./images/close_icon.svg" alt="закрыть"
+            <button class="popup__close-button" type="button"><img src="<%=require('../images/close_icon.svg')%>" alt="закрыть"
                     class="popup__close-icon"></button>
             <h2 class="popup__title">Новое место</h2>
             <form action="post" class="form add-form" name="add-form" novalidate>
@@ -92,7 +91,7 @@
         <div class="popup__image-wrapper">
             <button class="popup__close-button image-popup__close-icon">
             </button>
-            <img src="./images/element_04.png" alt="#" class="image-popup__image">
+            <img src="<%=require('../images/element_04.png')%>" alt="#" class="image-popup__image">
             <p class="image-popup__description">Карачаево-Черкессия</p>
         </div>
     </div>
