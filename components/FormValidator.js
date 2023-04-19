@@ -40,6 +40,18 @@ export class FormValidator {
         }
     }
 
+    removeValidationErrors() {
+        const element = this._formElement;
+        const elementInputs = Array.from(element.querySelectorAll(this._inputSelector));
+        const errorMessages = Array.from(element.querySelectorAll(this._errorClass));
+        if (elementInputs.length > 0) {
+            elementInputs.forEach(el => el.value = '');
+        }
+        if (errorMessages.length > 0) {
+            errorMessages.forEach(el => el.textContent = '');
+        }
+    }
+
     openingValidation() {
         this._inputList.forEach((inputElement) => {
             this._hideInputError(inputElement);

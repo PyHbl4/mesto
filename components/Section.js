@@ -11,9 +11,7 @@ export class Section {
         });
     }
 
-    addItem() {
-        this._items.forEach((item) => {
-            this._container.prepend(this._renderer(item));
-        });
+    addItem(cardElement) {
+        this._container.prepend(cardElement);
     }
 }
