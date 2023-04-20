@@ -13,6 +13,10 @@ export class Card {
             .content
             .querySelector('.element')
             .cloneNode(true);
+        this._cardImage = cardElement.querySelector('.element__image');
+        this._cardTitle = cardElement.querySelector('.element__title');
+        this._cardDeletButton = cardElement.querySelector('.element__delete-button');
+        this._cardLikeButton = cardElement.querySelector('.element__like');
         return cardElement;
     }
 
@@ -20,36 +24,27 @@ export class Card {
         this._element.remove();
     }
 
-    _openImagePopup() {
-        let popup = new PopupWithImage('.image-popup');
-        let src = this._element.querySelector('.element__image').src;
-        let alt = this._element.querySelector('.element__image').alt;
-        popup.open({ src, alt });
-    }
-
     _like(evt) {
         evt.target.classList.toggle('element__like_active');
     }
 
     _setEventListeners() {
-        this._element.querySelector('.element__delete-button').addEventListener('click', () => {
+        this._cardDeletButton.addEventListener('click', () => {
             this._deleteCard();
         });
 
-        this._element.querySelector('.element__image').addEventListener('click', () => {
-            this._openImagePopup();
-        })
+        this._cardImage.addEventListener('click', this._handleCardClick)
 
-        this._element.querySelector('.element__like').addEventListener('click', (evt) => {
+        this._cardLikeButton.addEventListener('click', (evt) => {
             this._like(evt);
         })
     }
 
     generateCard() {
         this._element = this._getTemplate();
-        this._element.querySelector('.element__title').textContent = this._name;
-        this._element.querySelector('.element__image').src = this._imgLink;
-        this._element.querySelector('.element__image').alt = `фото: ${this._name}`;
+        this._cardTitle.textContent = this._name;
+        this._cardImage.src = this._imgLink;
+        this._cardImage.alt = `фото: ${this._name}`;
         this._setEventListeners();
         return this._element;
     }

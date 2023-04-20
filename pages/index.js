@@ -21,24 +21,36 @@ const formBodyAdd = document.querySelector('.add-form');
 const formEditValidClass = new FormValidator(validSettings, formBodyEdit);
 const formAddValidClass = new FormValidator(validSettings, formBodyAdd);
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle');
-function createCard(data) {
-  const cardElement = new Card(data, "#place-card").generateCard();
-  return cardElement;
+
+function handleCardClick() {
+  let popup = new PopupWithImage('.image-popup');
+  let src = this.src;
+  let alt = this.alt;
+  popup.open({ src, alt });
 }
+
+function createCard(data) {
+  const cardElement = new Card(data, "#place-card", handleCardClick);
+  return cardElement.generateCard();
+}
+
 const cardList = new Section({
   items: initialCards,
   renderer: (data) => {
     return createCard(data);
   }
 }, '#elements-container');
+
 function editFormSubmit(data) {
   userInfo.setUserInfo(data.name, data.profession);
   formEditValidClass.removeValidationErrors();
 }
+
 function addFormSubmit(values) {
   cardList.addItem(createCard(values));
   formAddValidClass.removeValidationErrors();
 }
+
 window.addEventListener('DOMContentLoaded', () => {
   formEditValidClass.enableValidation();
   formAddValidClass.enableValidation();
