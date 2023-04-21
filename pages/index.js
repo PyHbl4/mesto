@@ -21,16 +21,16 @@ const formBodyAdd = document.querySelector('.add-form');
 const formEditValidClass = new FormValidator(validSettings, formBodyEdit);
 const formAddValidClass = new FormValidator(validSettings, formBodyAdd);
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle');
+const popupImage = new PopupWithImage('.image-popup');
+popupImage.setEventListeners();
 
-function handleCardClick() {
-  let popup = new PopupWithImage('.image-popup');
-  let src = this.src;
-  let alt = this.alt;
-  popup.open({ src, alt });
+function handleCardClick(src, alt) {
+  popupImage.open(src, alt);
+
 }
 
 function createCard(data) {
-  const cardElement = new Card(data, "#place-card", handleCardClick);
+  const cardElement = new Card(data, "#place-card", () => handleCardClick({ src: data.link, alt: data.name }));
   return cardElement.generateCard();
 }
 
@@ -55,8 +55,6 @@ window.addEventListener('DOMContentLoaded', () => {
   formEditValidClass.enableValidation();
   formAddValidClass.enableValidation();
   cardList.renderItems();
-  const imagePopup = new PopupWithImage('.image-popup');
-  imagePopup.setEventListeners();
   const formAddCard = new PopupWithForm('.popup_add', addFormSubmit);
   const formEditProfile = new PopupWithForm('.popup_edit', editFormSubmit);
   formAddCard.setEventListeners();
