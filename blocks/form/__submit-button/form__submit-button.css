@@ -1,4 +1,4 @@
-.edit-form__submit-button {
+.form__submit-button {
     outline: none;
     font-weight: 400;
     font-size: 18px;
@@ -13,7 +13,7 @@
     cursor: pointer;
 }
 
-.edit-form__submit-button[disabled="true"] {
+.form__submit-button[disabled="true"] {
     opacity: 0.2;
     border: 1px solid #000;
     color: #000;
@@ -21,15 +21,15 @@
     cursor: not-allowed;
 }
 
-.edit-form__submit-button[disabled="true"]:hover {
+.form__submit-button[disabled="true"]:hover {
     opacity: .2;
 }
 
-.edit-form__submit-button:hover {
+.form__submit-button:hover {
     opacity: .8;
 }
 @media screen and (max-width: 450px) {
-    .edit-form__submit-button {
+    .form__submit-button {
         height: 46px;
         font-size: 14px;
     }
