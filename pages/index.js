@@ -30,7 +30,6 @@ popupImage.setEventListeners();
 
 function handleCardClick(src, alt) {
   popupImage.open(src, alt);
-
 }
 
 function createCard(data) {
@@ -55,26 +54,6 @@ function changeFormSubmit(values) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  // fetch(initialInfo.apiUrl + initialInfo.cohort + initialInfo.pathToCards, {
-  //   headers: {
-  //     authorization: 'a7c3f1ef-90a8-4cfe-beac-9f368d375108'
-  //   }
-  // })
-  //   .then(res => res.json())
-  //   .then((result) => {
-  //     console.log(result);
-  //     const cardList = new Section({
-  //       items: result,
-  //       renderer: (data) => {
-  //         return createCard(data);
-  //       }
-  //     }, '#elements-container');
-  //     cardList.renderItems();
-  //   })
-  //   .catch((err) => {
-  //     console.log(`Произошла сия ошибка: ${err}`);
-  //   })
-
   const api = new Api(initialInfo);
   api.getInitialCards()
     .then((result) => {
@@ -89,6 +68,14 @@ window.addEventListener('DOMContentLoaded', () => {
     .catch((err) => {
       console.log(`Что-то пошло не так. Ошибка: ${err}`);
     })
+  api.getUserInfo()
+    .then((result) => {
+      userInfo.setUserInfo(result.name, result.about);
+    })
+    .catch((err) => {
+      console.log(`Что-то пошло не так. Ошибка: ${err}`);
+    })
+
 
   formEditValidClass.enableValidation();
   formAddValidClass.enableValidation();

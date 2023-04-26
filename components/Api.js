@@ -7,8 +7,8 @@ export class Api {
         this._pathToMyCard = options.pathToMyCard;
     }
 
-    getInitialCards() {
-        return fetch(`${this._apiUrl}${this._cohort}${this._pathToCards}`, {
+    _getApiData(request) {
+        return fetch(request, {
             headers: {
                 authorization: this._token
             }
@@ -27,4 +27,11 @@ export class Api {
     }
 
 
+    getInitialCards() {
+        return this._getApiData(`${this._apiUrl}${this._cohort}${this._pathToCards}`);
+    }
+
+    getUserInfo() {
+        return this._getApiData(`${this._apiUrl}${this._cohort}${this._pathToMyCard}`);
+    }
 }
