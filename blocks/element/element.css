@@ -7,7 +7,8 @@
     font-size: 0;
     display: grid;
     grid-template-columns: 1fr max-content;
-    grid-template-rows: 1fr max-content;
+    grid-template-rows: 1fr auto auto;
     grid-template-areas: "element__image element__image"
-        "element__title element__like";
+        "element__title element__like"
+        "element__title element__likes-count";
 }

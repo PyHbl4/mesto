@@ -1,7 +1,8 @@
 .element__like {
     grid-area: element__like;
     margin-right: 20px;
-    align-self: center;
+    align-self: flex-end;
+    justify-self: center;
     cursor: pointer;
     transition: opacity .4s;
     width: 22px;

@@ -4,7 +4,8 @@ import { Section } from '../components/Section.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { UserInfo } from '../components/UserInfo.js';
-import { initialCards } from '../scripts/cardsData.js';
+import { initialInfo } from '../scripts/initialData.js';
+import { Api } from '../components/Api.js';
 const validSettings = {
   formSelector: '.form',
   inputSelector: '.form__input',
@@ -37,12 +38,7 @@ function createCard(data) {
   return cardElement.generateCard();
 }
 
-const cardList = new Section({
-  items: initialCards,
-  renderer: (data) => {
-    return createCard(data);
-  }
-}, '#elements-container');
+
 
 function editFormSubmit(data) {
   userInfo.setUserInfo(data.name, data.profession);
@@ -59,10 +55,44 @@ function changeFormSubmit(values) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+  // fetch(initialInfo.apiUrl + initialInfo.cohort + initialInfo.pathToCards, {
+  //   headers: {
+  //     authorization: 'a7c3f1ef-90a8-4cfe-beac-9f368d375108'
+  //   }
+  // })
+  //   .then(res => res.json())
+  //   .then((result) => {
+  //     console.log(result);
+  //     const cardList = new Section({
+  //       items: result,
+  //       renderer: (data) => {
+  //         return createCard(data);
+  //       }
+  //     }, '#elements-container');
+  //     cardList.renderItems();
+  //   })
+  //   .catch((err) => {
+  //     console.log(`Произошла сия ошибка: ${err}`);
+  //   })
+
+  const api = new Api(initialInfo);
+  api.getInitialCards()
+    .then((result) => {
+      const cardList = new Section({
+        items: result,
+        renderer: (data) => {
+          return createCard(data);
+        }
+      }, '#elements-container');
+      cardList.renderItems();
+    })
+    .catch((err) => {
+      console.log(`Что-то пошло не так. Ошибка: ${err}`);
+    })
+
   formEditValidClass.enableValidation();
   formAddValidClass.enableValidation();
   formAvatarValidClass.enableValidation();
-  cardList.renderItems();
   const formAddCard = new PopupWithForm('.popup_add', addFormSubmit);
   const formEditProfile = new PopupWithForm('.popup_edit', editFormSubmit);
   const formChangeAvatar = new PopupWithForm('.popup_change-avatar', changeFormSubmit);
@@ -79,7 +109,7 @@ window.addEventListener('DOMContentLoaded', () => {
     formAddCard.open();
     formAddValidClass.openingValidation();
   });
-  
+
   buttonChange.addEventListener('click', () => {
     formChangeAvatar.open();
     formAvatarValidClass.openingValidation();
