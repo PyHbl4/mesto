@@ -21,32 +21,65 @@ const inputProfession = document.querySelector('.edit-form__input_type_professio
 const formBodyEdit = document.querySelector('.edit-form');
 const formBodyAdd = document.querySelector('.add-form');
 const formBodyAvatar = document.querySelector('.change-avatar-form');
+let userID;
 const formEditValidClass = new FormValidator(validSettings, formBodyEdit);
 const formAddValidClass = new FormValidator(validSettings, formBodyAdd);
 const formAvatarValidClass = new FormValidator(validSettings, formBodyAvatar);
 const userInfo = new UserInfo('.profile__title', '.profile__subtitle');
 const popupImage = new PopupWithImage('.image-popup');
+const api = new Api(initialInfo);
+let cardList;
 popupImage.setEventListeners();
+
+function showErrorMessage(err) {
+  console.log(`Что-то пошло не так. Ошибка: ${err}`);
+}
 
 function handleCardClick(src, alt) {
   popupImage.open(src, alt);
 }
 
+function toggleCardLike(id, method, likeCounter) {
+  return api.toggleLike(id, method)
+  .then((result) => {
+    likeCounter.textContent = result.likes.length;
+    return result;
+  })
+  .catch((err) => {
+    showErrorMessage(err);
+  })
+}
+
 function createCard(data) {
-  const cardElement = new Card(data, "#place-card", () => handleCardClick({ src: data.link, alt: data.name }));
+  // console.log(data);
+  const cardElement = new Card(data, "#place-card", userID, () => handleCardClick({ src: data.link, alt: data.name }), toggleCardLike);
   return cardElement.generateCard();
 }
 
-
-
 function editFormSubmit(data) {
-  userInfo.setUserInfo(data.name, data.profession);
+  const info = {
+    name: data.name,
+    about: data.profession
+  }
+  api.setUserInfo(info)
+    .then((result) => {
+      userInfo.setUserInfo(result.name, result.about);
+    })
+    .catch((err) => {
+      showErrorMessage(err);
+    })
   formEditValidClass.removeValidationErrors();
 }
 
 function addFormSubmit(values) {
-  cardList.addItem(createCard(values));
-  formAddValidClass.removeValidationErrors();
+  api.setNewCard(values)
+    .then((result) => {
+      cardList.addItem(createCard(result));
+      formAddValidClass.removeValidationErrors();
+    })
+    .catch((err) => {
+      showErrorMessage(err);
+    })
 }
 
 function changeFormSubmit(values) {
@@ -54,10 +87,10 @@ function changeFormSubmit(values) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  const api = new Api(initialInfo);
+  //generating cards on page...
   api.getInitialCards()
     .then((result) => {
-      const cardList = new Section({
+      cardList = new Section({
         items: result,
         renderer: (data) => {
           return createCard(data);
@@ -66,14 +99,17 @@ window.addEventListener('DOMContentLoaded', () => {
       cardList.renderItems();
     })
     .catch((err) => {
-      console.log(`Что-то пошло не так. Ошибка: ${err}`);
+      showErrorMessage(err);
     })
+
+  //setting user info on page...
   api.getUserInfo()
     .then((result) => {
+      userID = result._id;
       userInfo.setUserInfo(result.name, result.about);
     })
     .catch((err) => {
-      console.log(`Что-то пошло не так. Ошибка: ${err}`);
+      showErrorMessage(err);
     })
 
 
