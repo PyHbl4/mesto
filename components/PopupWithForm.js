@@ -4,6 +4,8 @@ export class PopupWithForm extends Popup {
         super(popupSelector);
         this._form = this._popup.querySelector('.form');
         this._submitCallback = submitCallback;
+        this._formButton = this._form.querySelector('.form__submit-button')
+        this._formButtonText = this._formButton.textContent;
     }
 
     _getInputValues() {
@@ -11,6 +13,14 @@ export class PopupWithForm extends Popup {
         const values = {};
         inputs.forEach(input => values[input.name] = input.value);
         return values;
+    }
+
+    setLoadingText(text) {
+        this._formButton.textContent = text;
+    }
+
+    setOriginalText() {
+        this._formButton.textContent = this._formButtonText;
     }
 
     setEventListeners() {

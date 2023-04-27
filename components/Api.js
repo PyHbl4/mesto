@@ -5,6 +5,7 @@ export class Api {
         this._token = options.token;
         this._pathToCards = options.pathToCards;
         this._pathToMyCard = options.pathToMyCard;
+        this._pathToMyAvatar = options.pathToMyAvatar;
     }
 
     _getApiData(requestUrl) {
@@ -63,6 +64,31 @@ export class Api {
         return this._setApiData(`${this._apiUrl}${this._cohort}${this._pathToCards}`, options, 'POST');
     }
 
+    changeAvatar(options) {
+        return this._setApiData(`${this._apiUrl}${this._cohort}${this._pathToMyCard}${this._pathToMyAvatar}`, options, 'PATCH');
+    }
+
+    deleteCard(cardId) {
+        return fetch(`${this._apiUrl}${this._cohort}${this._pathToCards}/${cardId}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: this._token,
+            }
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+            })
+            .then((result) => {
+                return result;
+            })
+            .catch((err) => {
+                return err;
+            })
+    }
+
+
     toggleLike(id, method) {
         return fetch(`https://mesto.nomoreparties.co/v1/${this._cohort}${this._pathToCards}/${id}/likes`, {
             method: method,
@@ -82,4 +108,5 @@ export class Api {
                 return err;
             })
     }
+
 }
