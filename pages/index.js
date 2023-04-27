@@ -6,6 +6,7 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { initialInfo } from '../scripts/initialData.js';
 import { Api } from '../components/Api.js';
+window.addEventListener('DOMContentLoaded', () => {
 const validSettings = {
   formSelector: '.form',
   inputSelector: '.form__input',
@@ -127,7 +128,6 @@ function deleteFormSubmit() {
     })
 }
 
-window.addEventListener('DOMContentLoaded', () => {
   //generating cards on page...
   api.getInitialCards()
     .then((result) => {
