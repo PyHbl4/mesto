@@ -15,6 +15,7 @@
             <img src="<%=require('../images/element_04.png')%>" alt="" class="element__image">
             <h2 class="element__title"></h2>
             <button type="button" class="element__like"></button>
+            <p class="element__likes-count">...</p>
         </div>
     </template>
     <div class="page-wrapper">
@@ -24,7 +25,8 @@
         <main>
             <section class="profile">
                 <div class="profile__avatar">
-                    <img src="<%=require('../images/avatar.jpg')%>" alt="аватар">
+                    <button type="button" class="profile__avatar-button"><img src="<%=require('../images/change_avatar.svg')%>" alt="изменить аватар"></button>
+                    <img class="profile__avatar-image" src="<%=require('../images/avatar.jpg')%>" alt="аватар">
                 </div>
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -63,7 +65,7 @@
                         minlength="2" maxlength="200">
                     <span class="error-message edit-profession-error">текст ошибки</span>
                 </label>
-                <button type="submit" class="form-submit edit-form__submit-button">Сохранить</button>
+                <button type="submit" class="form-submit form__submit-button">Сохранить</button>
             </form>
         </div>
     </div>
@@ -83,7 +85,7 @@
                         name="link" placeholder="Ссылка на картинку" required>
                     <span class="error-message add-url-error">текст ошибки</span>
                 </label>
-                <button type="submit" class="form-submit add-form__submit-button">Создать</button>
+                <button type="submit" class="form-submit form__submit-button">Создать</button>
             </form>
         </div>
     </div>
