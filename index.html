@@ -57,13 +57,13 @@
             <h2 class="popup__title">Редактировать профиль</h2>
             <form action="post" class="form edit-form" name="edit-form" novalidate>
                 <label class="form__label" for="edit-name">
-                    <input id="edit-name" type="text" class="form__input edit-form__input edit-form__input_type_name"
+                    <input id="edit-name" type="text" class="form__input"
                         name="name" required minlength="2" maxlength="40">
                     <span class="error-message edit-name-error">текст ошибки</span>
                 </label>
                 <label class="form__label" for="edit-profession">
                     <input id="edit-profession" type="text"
-                        class="form__input edit-form__input edit-form__input_type_profession" name="profession" required
+                        class="form__input" name="profession" required
                         minlength="2" maxlength="200">
                     <span class="error-message edit-profession-error">текст ошибки</span>
                 </label>
@@ -78,12 +78,12 @@
             <h2 class="popup__title">Новое место</h2>
             <form action="post" class="form add-form" name="add-form" novalidate>
                 <label class="form__label" for="add-name">
-                    <input id="add-name" type="text" class="form__input add-form__input add-form__input_type_name"
+                    <input id="add-name" type="text" class="form__input"
                         name="name" placeholder="Название" required minlength="2" maxlength="30">
                     <span class="error-message add-name-error">текст ошибки</span>
                 </label>
                 <label class="form__label" for="add-url">
-                    <input id="add-url" type="url" class="form__input add-form__input add-form__input_type_image"
+                    <input id="add-url" type="url" class="form__input"
                         name="link" placeholder="Ссылка на картинку" required>
                     <span class="error-message add-url-error">текст ошибки</span>
                 </label>
