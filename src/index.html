@@ -11,7 +11,8 @@
 <body class="site-body">
     <template id="place-card">
         <div class="element">
-            <button class="element__delete-button" type="button"><img src="<%=require('../images/trash.svg')%>" alt="удалить"></button>
+            <button class="element__delete-button" type="button"><img src="<%=require('../images/trash.svg')%>"
+                    alt="удалить"></button>
             <img src="<%=require('../images/element_04.png')%>" alt="" class="element__image">
             <h2 class="element__title"></h2>
             <button type="button" class="element__like"></button>
@@ -25,7 +26,8 @@
         <main>
             <section class="profile">
                 <div class="profile__avatar">
-                    <button type="button" class="profile__avatar-button"><img src="<%=require('../images/change_avatar.svg')%>" alt="изменить аватар"></button>
+                    <button type="button" class="profile__avatar-button"><img
+                            src="<%=require('../images/change_avatar.svg')%>" alt="изменить аватар"></button>
                     <img class="profile__avatar-image" src="<%=require('../images/avatar.jpg')%>" alt="аватар">
                 </div>
                 <div class="profile__info">
@@ -37,7 +39,8 @@
                 </div>
 
                 <button class="profile__add-button" type="button">
-                    <img class="profile__add-button-icon" src="<%=require('../images/add_button.svg')%>" alt="кнопка добавления карточки">
+                    <img class="profile__add-button-icon" src="<%=require('../images/add_button.svg')%>"
+                        alt="кнопка добавления карточки">
                 </button>
             </section>
             <section class="elements" id="elements-container"></section>
@@ -50,19 +53,18 @@
     </div>
     <div class="popup popup_edit">
         <div class="popup__container">
-            <button class="popup__close-button" type="button"><img src="<%=require('../images/close_icon.svg')%>" alt="закрыть"
-                    class="popup__close-icon"></button>
+            <button class="popup__close-button" type="button"><img src="<%=require('../images/close_icon.svg')%>"
+                    alt="закрыть" class="popup__close-icon"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
             <form action="post" class="form edit-form" name="edit-form" novalidate>
                 <label class="form__label" for="edit-name">
-                    <input id="edit-name" type="text" class="form__input"
-                        name="name" required minlength="2" maxlength="40">
+                    <input id="edit-name" type="text" class="form__input" name="name" required minlength="2"
+                        maxlength="40">
                     <span class="error-message edit-name-error">текст ошибки</span>
                 </label>
                 <label class="form__label" for="edit-profession">
-                    <input id="edit-profession" type="text"
-                        class="form__input" name="profession" required
-                        minlength="2" maxlength="200">
+                    <input id="edit-profession" type="text" class="form__input" name="profession" required minlength="2"
+                        maxlength="200">
                     <span class="error-message edit-profession-error">текст ошибки</span>
                 </label>
                 <button type="submit" class="form-submit form__submit-button">Сохранить</button>
@@ -71,18 +73,18 @@
     </div>
     <div class="popup popup_add">
         <div class="popup__container">
-            <button class="popup__close-button" type="button"><img src="<%=require('../images/close_icon.svg')%>" alt="закрыть"
-                    class="popup__close-icon"></button>
+            <button class="popup__close-button" type="button"><img src="<%=require('../images/close_icon.svg')%>"
+                    alt="закрыть" class="popup__close-icon"></button>
             <h2 class="popup__title">Новое место</h2>
             <form action="post" class="form add-form" name="add-form" novalidate>
                 <label class="form__label" for="add-name">
-                    <input id="add-name" type="text" class="form-inpu"
-                        name="name" placeholder="Название" required minlength="2" maxlength="30">
+                    <input id="add-name" type="text" class="form__input" name="name" placeholder="Название" required
+                        minlength="2" maxlength="30">
                     <span class="error-message add-name-error">текст ошибки</span>
                 </label>
                 <label class="form__label" for="add-url">
-                    <input id="add-url" type="url" class="form__input"
-                        name="link" placeholder="Ссылка на картинку" required>
+                    <input id="add-url" type="url" class="form__input" name="link" placeholder="Ссылка на картинку"
+                        required>
                     <span class="error-message add-url-error">текст ошибки</span>
                 </label>
                 <button type="submit" class="form-submit form__submit-button">Создать</button>
@@ -91,13 +93,13 @@
     </div>
     <div class="popup popup_change-avatar">
         <div class="popup__container">
-            <button class="popup__close-button" type="button"><img src="<%=require('../images/close_icon.svg')%>" alt="закрыть"
-                class="popup__close-icon"></button>
+            <button class="popup__close-button" type="button"><img src="<%=require('../images/close_icon.svg')%>"
+                    alt="закрыть" class="popup__close-icon"></button>
             <h2 class="popup__title">Обновить аватар</h2>
             <form action="post" class="form change-avatar-form" name="change-avatar-form" novalidate>
                 <label class="form__label" for="change-avatar-url">
-                    <input id="change-avatar-url" type="url" class="form__input"
-                        name="avatar" placeholder="Ссылка на картинку" required>
+                    <input id="change-avatar-url" type="url" class="form__input" name="avatar"
+                        placeholder="Ссылка на картинку" required>
                     <span class="error-message change-avatar-url-error">текст ошибки</span>
                 </label>
                 <button type="submit" class="form-submit form__submit-button">Сохранить</button>
@@ -106,15 +108,15 @@
     </div>
     <div class="popup popup_delete">
         <div class="popup__container">
-            <button class="popup__close-button" type="button"><img src="<%=require('../images/close_icon.svg')%>" alt="закрыть"
-                class="popup__close-icon"></button>
+            <button class="popup__close-button" type="button"><img src="<%=require('../images/close_icon.svg')%>"
+                    alt="закрыть" class="popup__close-icon"></button>
             <h2 class="popup__title">Вы уверены?</h2>
             <form action="post" class="form delete-form" name="delete-form" novalidate>
                 <button type="submit" class="form-submit form__submit-button">Да</button>
             </form>
         </div>
     </div>
-    
+
     <div class="popup image-popup">
         <div class="popup__image-wrapper">
             <button class="popup__close-button image-popup__close-icon">

@@ -1,12 +1,11 @@
 export class Card {
-    constructor(data, templateSelector, myID, handleCardClick, toggleCardLike, openDeletePopup, submitform) {
+    constructor(data, templateSelector, myID, handleCardClick, toggleCardLike, initDeleteCard) {
         this._templateSelector = templateSelector;
         this._name = data.name;
         this._imgLink = data.link;
         this._handleCardClick = handleCardClick;
         this._toggleCardLike = toggleCardLike;
-        this._openDeletePopup = openDeletePopup;
-        this._submitform = submitform;
+        this._initDeleteCard = initDeleteCard;
         this._countOfLikes = data.likes.length;
         this._ownerID = data.owner._id;
         this._myID = myID;
@@ -41,14 +40,27 @@ export class Card {
     }
 
     _like(evt) {
-        if (this._isLiked) {
-            this._toggleCardLike(this._cardId, "DELETE", this._cardLikesCount);
-            this._isLiked = !this._isLiked;
-            evt.target.classList.remove('element__like_active');
+        let isLiked = this._isLiked;
+        if (isLiked) {
+            const like = Promise.resolve(this._toggleCardLike(this._cardId, "DELETE", this._cardLikesCount));
+            like.then(() => {
+                evt.target.classList.remove('element__like_active');
+                isLiked = !isLiked;
+            }).catch((err) => {
+                console.log(err);
+            }).finally(() => {
+                this._isLiked = isLiked;
+            })
         } else {
-            this._toggleCardLike(this._cardId, "PUT", this._cardLikesCount);
-            this._isLiked = !this._isLiked;
-            evt.target.classList.add('element__like_active');
+            const like = Promise.resolve(this._toggleCardLike(this._cardId, "PUT", this._cardLikesCount));
+            like.then(() => {
+                evt.target.classList.add('element__like_active');
+                isLiked = !isLiked;
+            }).catch((err) => {
+                console.log(err);
+            }).finally(() => {
+                this._isLiked = isLiked;
+            })
         }
     }
 
