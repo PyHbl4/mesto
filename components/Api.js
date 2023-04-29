@@ -8,17 +8,21 @@ export class Api {
         this._pathToMyAvatar = options.pathToMyAvatar;
     }
 
+    _checkResponse(res) {
+        if (res.ok) {
+            return res.json();
+        } else {
+            return Promise.reject(`Ошибка ${res.status}`);
+        }
+    }
+
     _getApiData(requestUrl) {
         return fetch(requestUrl, {
             headers: {
                 authorization: this._token,
             }
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-            })
+            .then(this._checkResponse)
             .then((result) => {
                 return result;
             })
@@ -36,11 +40,8 @@ export class Api {
             },
             body: JSON.stringify(options)
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-            }).then((result) => {
+            .then(this._checkResponse)
+            .then((result) => {
                 return result;
             })
             .catch((err) => {
@@ -75,11 +76,7 @@ export class Api {
                 authorization: this._token,
             }
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-            })
+            .then(this._checkResponse)
             .then((result) => {
                 return result;
             })
@@ -96,11 +93,7 @@ export class Api {
                 authorization: this._token
             }
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-            })
+            .then(this._checkResponse)
             .then((result) => {
                 return result;
             })

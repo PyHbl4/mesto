@@ -1,11 +1,15 @@
 export class Card {
-    constructor(data, templateSelector, myID, handleCardClick, toggleCardLike, initDeleteCard) {
+    constructor(data, templateSelector, myID, handleCardClick, toggleCardLike, openSubmitPopup, closeSubmitPopup, initDeleteCard, showDeleteErr, submitButton) {
         this._templateSelector = templateSelector;
         this._name = data.name;
         this._imgLink = data.link;
         this._handleCardClick = handleCardClick;
         this._toggleCardLike = toggleCardLike;
         this._initDeleteCard = initDeleteCard;
+        this._openSubmitPopup = openSubmitPopup;
+        this._closeSubmitPopup = closeSubmitPopup;
+        this._submitButton = submitButton;
+        this._showDeleteErr = showDeleteErr;
         this._countOfLikes = data.likes.length;
         this._ownerID = data.owner._id;
         this._myID = myID;
@@ -25,18 +29,25 @@ export class Card {
             .cloneNode(true);
         this._cardImage = cardElement.querySelector('.element__image');
         this._cardTitle = cardElement.querySelector('.element__title');
-        this._cardDeletButton = cardElement.querySelector('.element__delete-button');
+        this._cardDeleteButton = cardElement.querySelector('.element__delete-button');
         if (this._myID !== this._ownerID) {
-            this._cardDeletButton.remove();
+            this._cardDeleteButton.remove();
         }
         this._cardLikeButton = cardElement.querySelector('.element__like');
         this._cardLikesCount = cardElement.querySelector('.element__likes-count');
-        this._cardLikeButton.setAttribute('data-id', this._cardId);
         return cardElement;
     }
 
     _deleteCard() {
-        this._element.remove();
+        Promise.resolve(this._initDeleteCard())
+            .then((res) => {
+                if (res.message === "Пост удалён") {
+                    this._element.remove();
+                    this._closeSubmitPopup();
+                } else {
+                    this._showDeleteErr();
+                }
+            });
     }
 
     _like(evt) {
@@ -65,18 +76,17 @@ export class Card {
     }
 
     _setEventListeners() {
-        this._cardDeletButton.addEventListener('click', () => {
-            this._openDeletePopup(this._cardId);
-            this._submitform.addEventListener('submit', this._deleteCard.bind(this))
+        this._cardDeleteButton.addEventListener('click', () => {
+            this._submitButton.dataset.cardId = this._cardId;
+            this._openSubmitPopup();
+            this._submitButton.onclick = this._deleteCard.bind(this);
         });
 
-        this._submitform.removeEventListener('submit', this._deleteCard)
-
-        this._cardImage.addEventListener('click', this._handleCardClick)
+        this._cardImage.addEventListener('click', this._handleCardClick);
 
         this._cardLikeButton.addEventListener('click', (evt) => {
             this._like(evt);
-        })
+        });
     }
 
     generateCard() {

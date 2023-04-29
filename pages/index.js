@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const formAddCard = new PopupWithForm('.popup_add', addFormSubmit);
   const formEditProfile = new PopupWithForm('.popup_edit', editFormSubmit);
   const formChangeAvatar = new PopupWithForm('.popup_change-avatar', changeFormSubmit);
-  const formDeleteCard = new PopupWithConfirmation('.popup_delete');
+  const formDeleteCard = new PopupWithConfirmation('.delete-popup');
   const formEditValidClass = new FormValidator(validSettings, formBodyEdit);
   const formAddValidClass = new FormValidator(validSettings, formBodyAdd);
   const formAvatarValidClass = new FormValidator(validSettings, formBodyAvatar);
@@ -20,17 +20,14 @@ window.addEventListener('DOMContentLoaded', () => {
   const api = new Api(initialInfo);
   let cardList;
   let userID;
-
   function showErrorMessage(err) {
     console.error(`Что-то пошло не так. Ошибка: ${err}`);
   }
-
   //<размещаем инфу с сервера на странице>
   function createCard(data) {
-    const cardElement = new Card(data, "#place-card", userID, () => handleCardClick({ src: data.link, alt: data.name }), toggleCardLike, openDeletePopup, formBodyDelete);
+    const cardElement = new Card(data, "#place-card", userID, () => handleCardClick({ src: data.link, alt: data.name }), toggleCardLike, openSubmitPopup, closeSubmitPopup, initDeleteCard, showDeleteErr, formDeleteCard.button);
     return cardElement.generateCard();
   }
-
   function getInitialCards() {
     return api.getInitialCards()
       .then((result) => {
@@ -41,20 +38,16 @@ window.addEventListener('DOMContentLoaded', () => {
         return err;
       })
   }
-
   function getUserInfo() {
     return api.getUserInfo()
       .then((result) => {
-        const user = result;
-        return user;
+        return result;
       })
       .catch((err) => {
         return err;
       })
   }
-
   const setInfoInPage = Promise.all([getInitialCards(), getUserInfo()])
-
   setInfoInPage.then(([cardResult, user]) => {
     userID = user._id;
     userInfo.setUserInfo(user.name, user.about);
@@ -70,7 +63,6 @@ window.addEventListener('DOMContentLoaded', () => {
     showErrorMessage(err);
   })
   //</размещаем инфу с сервера на странице>
-
   // <размещаем инфу о пользователе по сабмиту формы>
   function getProfileInfo(data) {
     const info = {
@@ -79,7 +71,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     return api.setUserInfo(info);
   }
-
   function editFormSubmit(data) {
     const setInfo = Promise.resolve(getProfileInfo(data));
     formEditProfile.setAnotherText('Сохранение...');
@@ -91,16 +82,15 @@ window.addEventListener('DOMContentLoaded', () => {
         formEditValidClass.removeValidationErrors();
       })
       .catch((err) => {
+        formEditProfile.setAnotherText('Ошибка!');
         showErrorMessage(err);
       })
   }
   // </размещаем инфу о пользователе по сабмиту формы>
-
   //<добавляем новую карточку в DOM>
   function addCardRequest(values) {
     return api.setNewCard(values);
   }
-
   function addFormSubmit(values) {
     const request = Promise.resolve(addCardRequest(values));
     formAddCard.setAnotherText('Сохранение...');
@@ -111,16 +101,12 @@ window.addEventListener('DOMContentLoaded', () => {
         formAddCard.close();
       })
       .catch((err) => {
+        formAddCard.setAnotherText('Ошибка!');
         showErrorMessage(err);
-      })
-      .finally(() => {
-        formAddCard.setOriginalText();
       });
   }
   //</добавляем новую карточку в DOM>
-
   //<обработка лайка>
-
   function toggleCardLike(id, method, likeCounter) {
     return api.toggleLike(id, method)
       .then((result) => {
@@ -131,22 +117,16 @@ window.addEventListener('DOMContentLoaded', () => {
         showErrorMessage(err);
       })
   }
-
   //</обработка лайка>
-
   //<открытие попапа с изображением>
-
   function handleCardClick(src, alt) {
     popupImage.open(src, alt);
   }
-
   //</открытие попапа с изображением>
-
   //<изменение аватара>
   function changeAvatarRequest(data) {
     return api.changeAvatar(data);
   }
-
   function changeFormSubmit(values) {
     const request = Promise.resolve(changeAvatarRequest(values))
     formChangeAvatar.setAnotherText('Сохранение...');
@@ -157,40 +137,29 @@ window.addEventListener('DOMContentLoaded', () => {
         formChangeAvatar.close();
       })
       .catch((err) => {
+        formChangeAvatar.setAnotherText('Ошибка!');
         showErrorMessage(err);
-      })
-      .finally(() => {
-        formChangeAvatar.setOriginalText();
-      })
+      });
   }
   //</изменение аватара>
-
-  function openDeletePopup(id) {
-    formBodyDelete.dataset.imageId = id;
+  //<функционал удаления карточки>
+  function openSubmitPopup() {
     formDeleteCard.open();
   }
 
-  //<функционал удаления карточки>
-  function deleteCardRequest() {
-    return api.deleteCard(formBodyDelete.dataset.imageId);
+  function closeSubmitPopup() {
+    formDeleteCard.close();
   }
-  function deleteFormSubmit() {
-    const request = Promise.resolve(deleteCardRequest());
+
+  function showDeleteErr() {
+    formDeleteCard.setAnotherText('Ошибка!');
+  }
+
+  function initDeleteCard() {
     formDeleteCard.setAnotherText('Удаление...');
-    request
-      .then((result) => {
-        return result;
-      })
-      .catch((err) => {
-        showErrorMessage(err);
-      })
-      .finally(() => {
-        formDeleteCard.setOriginalText();
-        formDeleteCard.close();
-      })
+    return api.deleteCard(formDeleteCard.button.dataset.cardId);
   }
   //</функционал удаления карточки>
-
   formEditValidClass.enableValidation();
   formAddValidClass.enableValidation();
   formAvatarValidClass.enableValidation();
@@ -209,7 +178,6 @@ window.addEventListener('DOMContentLoaded', () => {
     formAddCard.open();
     formAddValidClass.openingValidation();
   });
-
   buttonChange.addEventListener('click', () => {
     formChangeAvatar.open();
     formAvatarValidClass.openingValidation();

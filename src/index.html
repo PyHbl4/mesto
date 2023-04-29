@@ -31,8 +31,8 @@
                     <img class="profile__avatar-image" src="<%=require('../images/avatar.jpg')%>" alt="аватар">
                 </div>
                 <div class="profile__info">
-                    <h1 class="profile__title">Жак-Ив Кусто</h1>
-                    <p class="profile__subtitle">Исследователь океана</p>
+                    <h1 class="profile__title">Загрузка...</h1>
+                    <p class="profile__subtitle">Загрузка...</p>
                     <button type="button" class="profile__edit-button"><img class="profile__edit-button-icon"
                             src="<%=require('../images/edit_icon.svg')%>" alt="кнопка изменения информации">
                     </button>
@@ -106,14 +106,12 @@
             </form>
         </div>
     </div>
-    <div class="popup popup_delete">
+    <div class="popup delete-popup">
         <div class="popup__container">
             <button class="popup__close-button" type="button"><img src="<%=require('../images/close_icon.svg')%>"
                     alt="закрыть" class="popup__close-icon"></button>
             <h2 class="popup__title">Вы уверены?</h2>
-            <form action="post" class="form delete-form" name="delete-form" novalidate>
-                <button type="submit" class="form-submit form__submit-button">Да</button>
-            </form>
+            <button type="submit" class="form-submit form__submit-button">Да</button>
         </div>
     </div>
 
