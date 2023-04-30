@@ -47,6 +47,9 @@ export class Card {
                 } else {
                     this._showDeleteErr();
                 }
+            })
+            .catch((err) => {
+                this._showDeleteErr();
             });
     }
 
@@ -54,9 +57,13 @@ export class Card {
         let isLiked = this._isLiked;
         if (isLiked) {
             const like = Promise.resolve(this._toggleCardLike(this._cardId, "DELETE", this._cardLikesCount));
-            like.then(() => {
-                evt.target.classList.remove('element__like_active');
-                isLiked = !isLiked;
+            like.then((res) => {
+                if (res) {
+                    evt.target.classList.remove('element__like_active');
+                    isLiked = !isLiked;
+                } else {
+                    console.log('Ошибка выполнения запроса');
+                }
             }).catch((err) => {
                 console.log(err);
             }).finally(() => {
@@ -64,14 +71,17 @@ export class Card {
             })
         } else {
             const like = Promise.resolve(this._toggleCardLike(this._cardId, "PUT", this._cardLikesCount));
-            like.then(() => {
-                evt.target.classList.add('element__like_active');
-                isLiked = !isLiked;
-            }).catch((err) => {
-                console.log(err);
-            }).finally(() => {
-                this._isLiked = isLiked;
+            like.then((res) => {
+                if (res) {
+                    evt.target.classList.add('element__like_active');
+                    isLiked = !isLiked;
+                } else {
+                    console.log('Ошибка выполнения запроса');
+                }
             })
+                .finally(() => {
+                    this._isLiked = isLiked;
+                })
         }
     }
 

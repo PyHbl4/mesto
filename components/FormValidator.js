@@ -8,6 +8,8 @@ export class FormValidator {
         this._formElement = formElement;
         this._buttonSubmitElement = this._formElement.querySelector(this._submitButtonSelector);
         this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+        this._elementInputs = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+        this._errorMessages = Array.from(this._formElement.querySelectorAll(this._errorClass));
     }
 
     _showInputError(inputElement, errorMessage) {
@@ -41,14 +43,11 @@ export class FormValidator {
     }
 
     removeValidationErrors() {
-        const element = this._formElement;
-        const elementInputs = Array.from(element.querySelectorAll(this._inputSelector));
-        const errorMessages = Array.from(element.querySelectorAll(this._errorClass));
-        if (elementInputs.length > 0) {
-            elementInputs.forEach(el => el.value = '');
+        if (this._elementInputs.length > 0) {
+            this._elementInputs.forEach(el => el.value = '');
         }
-        if (errorMessages.length > 0) {
-            errorMessages.forEach(el => el.textContent = '');
+        if (this._errorMessages.length > 0) {
+            this._errorMessages.forEach(el => el.textContent = '');
         }
     }
 

@@ -25,10 +25,7 @@ export class Api {
             .then(this._checkResponse)
             .then((result) => {
                 return result;
-            })
-            .catch((err) => {
-                return err;
-            })
+            });
     }
 
     _setApiData(requestUrl, options, method) {
@@ -43,10 +40,7 @@ export class Api {
             .then(this._checkResponse)
             .then((result) => {
                 return result;
-            })
-            .catch((err) => {
-                return err;
-            })
+            });
     }
 
     getInitialCards() {
@@ -79,10 +73,7 @@ export class Api {
             .then(this._checkResponse)
             .then((result) => {
                 return result;
-            })
-            .catch((err) => {
-                return err;
-            })
+            });
     }
 
 
@@ -96,10 +87,7 @@ export class Api {
             .then(this._checkResponse)
             .then((result) => {
                 return result;
-            })
-            .catch((err) => {
-                return err;
-            })
+            });
     }
 
 }
